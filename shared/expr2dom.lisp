@@ -44,7 +44,7 @@
 (fn dom2expr-list (x)
   (& x
      (. (dom2expr x)
-        (? (x.has-attribute "c")
+        (? (x.attr? "c")
            (dom2expr x.next-sibling)
            (dom2expr-list x.next-sibling)))))
 
@@ -63,7 +63,7 @@
       "aa" (alist-props (dom2expr-list x.first-child))
       "f"  (number !)
       "s"  !
-      (let pack (& (x.has-attribute "k")
+      (let pack (& (x.attr? "k")
                    *keyword-package*)
         (unless (& pack (eql "NIL" !))
           (make-symbol ! pack))))))
