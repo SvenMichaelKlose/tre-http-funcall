@@ -5,9 +5,10 @@
   (print-definition `(declare-server-command ,name ,args))
   (with-gensym g
     (!=  (argument-expand-names 'declare-server-command-implementation args)
-      `{(fn ,g ,!
-          ((%%native ,(compiled-function-name name)) ,@!))
-        (= (href *server-commands* ',name) #',g)})))
+      `(progn
+         (fn ,g ,!
+           ((%%native ,(compiled-function-name name)) ,@!))
+         (= (href *server-commands* ',name) #',g)))))
 
 (fn serve-http-funcall ()
   (with (without-xml-type #'((x)
