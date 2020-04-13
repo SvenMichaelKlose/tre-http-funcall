@@ -49,7 +49,7 @@
            (dom2expr-list x.next-sibling)))))
 
 (fn dom2expr-array (x)
-  (aprog1 (make-array)
+  (aprog1 #()
     (let k 0
       (dolist (v (dom2expr-list x.first-child))
         (= (aref ! k) v)
