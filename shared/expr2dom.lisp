@@ -21,7 +21,7 @@
 
 (fn expr2dom-atom (parent x document)
   (?
-    (simple-object? x)
+    (json-object? x)
       (expr2dom-seq parent "aa" (props-alist x) document)
     (array? x)
       (expr2dom-seq parent "a" (array-list x) document)
